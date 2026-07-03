@@ -20,10 +20,20 @@ class OptimizerAgent:
 
         sharpe_ratios = (portfolio_returns - RISK_FREE_RATE) / portfolio_risks
 
+        # Max Drawdown calculation
+        daily_returns = xp.array(returns.values)
+        portfolio_daily_returns = daily_returns @ weights.T
+
+        cumulative = xp.cumprod(1 + portfolio_daily_returns, axis=0)
+        running_max = xp.maximum.accumulate(cumulative, axis=0)
+        drawdowns = cumulative / running_max - 1
+        max_drawdowns = xp.min(drawdowns, axis=0)
+
         results = portfolios.copy()
         results["return"] = portfolio_returns
         results["risk"] = portfolio_risks
         results["sharpe"] = sharpe_ratios
+        results["max_drawdown"] = max_drawdowns
 
         results.to_csv("data/portfolio_results.csv", index=False)
 
@@ -40,5 +50,9 @@ class OptimizerAgent:
         print()
         print("Maximum Return Portfolio:")
         print(results.loc[results["return"].idxmax()])
+
+        print()
+        print("Minimum Drawdown Portfolio:")
+        print(results.loc[results["max_drawdown"].idxmax()])
 
         return results

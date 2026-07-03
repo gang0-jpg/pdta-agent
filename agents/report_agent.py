@@ -3,6 +3,29 @@ import pandas as pd
 
 
 class ReportAgent:
+    def plot_scenario_summary(self, summary: pd.DataFrame):
+        """
+        シナリオ別 Sharpe Ratio を棒グラフで出力する。
+        """
+
+        plt.figure(figsize=(10, 6))
+
+        plt.bar(
+            summary["scenario"],
+            summary["sharpe"]
+        )
+
+        plt.title("PDTA Scenario Sharpe Ratio")
+        plt.xlabel("Scenario")
+        plt.ylabel("Sharpe Ratio")
+        plt.xticks(rotation=30, ha="right")
+        plt.grid(axis="y")
+
+        plt.savefig("output/scenario_summary.png", dpi=220, bbox_inches="tight")
+        plt.close()
+
+        print("Saved output/scenario_summary.png")
+
     def plot_frontier(self, results: pd.DataFrame, current=None):
         best_sharpe = results.loc[results["sharpe"].idxmax()]
         min_risk = results.loc[results["risk"].idxmin()]

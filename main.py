@@ -65,6 +65,7 @@ def main():
         "data/scenario_summary.csv",
         index=False
     )
+    report.plot_scenario_summary(summary)
 
     print()
     print(summary)
