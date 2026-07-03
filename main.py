@@ -85,6 +85,11 @@ def main():
         current=current
     )
 
+    report.plot_risk_reward_map(
+        normal_results,
+        current=current
+    )
+
     report.plot_scenario_summary(summary)
 
     print()
@@ -101,6 +106,8 @@ def main():
     print("- data/policy_recommendation.csv")
     print("- output/frontier.png")
     print("- output/scenario_summary.png")
+    print("- output/risk_reward_map.png")
 
 if __name__ == "__main__":
+
     main()
