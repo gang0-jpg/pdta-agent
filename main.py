@@ -1,3 +1,4 @@
+import pandas as pd
 from agents.market_agent import MarketAgent
 from agents.return_agent import ReturnAgent
 from agents.scenario_agent import ScenarioAgent
@@ -58,6 +59,18 @@ def main():
     report.plot_frontier(normal_results, current=current)
 
     print()
+    summary = pd.DataFrame(scenario_results)
+
+    summary.to_csv(
+        "data/scenario_summary.csv",
+        index=False
+    )
+
+    print()
+    print(summary)
+
+    print()
+    print("Saved data/scenario_summary.csv")
     print("Scenario count:", len(scenarios))
     print("PDTA v0.7 completed.")
 
