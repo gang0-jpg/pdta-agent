@@ -23,17 +23,43 @@ def main():
     portfolios = generator.generate(returns.columns)
 
     optimizer = OptimizerAgent()
-    results = optimizer.evaluate(returns, portfolios)
+
+    print()
+    print("Scenario Evaluation Summary:")
+
+    scenario_results = []
+
+    for scenario in scenarios:
+        shocked_returns = scenario_agent.apply_shock(returns, scenario)
+        results = optimizer.evaluate(shocked_returns, portfolios)
+
+        best_sharpe = results.loc[results["sharpe"].idxmax()]
+
+        scenario_results.append({
+            "scenario": scenario["name"],
+            "return": best_sharpe["return"],
+            "risk": best_sharpe["risk"],
+            "sharpe": best_sharpe["sharpe"]
+        })
+
+        print(
+            f"{scenario['name']}: "
+            f"return={best_sharpe['return']:.4f}, "
+            f"risk={best_sharpe['risk']:.4f}, "
+            f"sharpe={best_sharpe['sharpe']:.4f}"
+        )
+
+    normal_results = optimizer.evaluate(returns, portfolios)
 
     current_agent = CurrentPortfolioAgent()
     current = current_agent.evaluate(returns)
 
     report = ReportAgent()
-    report.plot_frontier(results, current=current)
+    report.plot_frontier(normal_results, current=current)
 
     print()
-    print(f"Scenario count: {len(scenarios)}")
-    print("PDTA v0.6 completed.")
+    print("Scenario count:", len(scenarios))
+    print("PDTA v0.7 completed.")
 
 
 if __name__ == "__main__":
