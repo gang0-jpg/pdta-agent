@@ -24,6 +24,8 @@ CURRENT_PORTFOLIO = {
     "NASDAQ100": 0.00,
     "GOLD": 0.05,
     "JREIT": 0.04,
-    "USDJPY": 0.77
+    "USBOND": 0.08,
+    "USDJPY": 0.23,
+    "JPY": 0.46
 }
 

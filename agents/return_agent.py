@@ -12,6 +12,9 @@ class ReturnAgent:
         # 異常値を除外
         returns = returns.clip(lower=-0.2, upper=0.2)
 
+        # 円キャッシュ：リターン0として追加
+        returns["JPY"] = 0.0
+
         returns.to_csv("data/returns.csv")
 
         print("Saved data/returns.csv")
