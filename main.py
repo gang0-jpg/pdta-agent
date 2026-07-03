@@ -1,5 +1,6 @@
 from agents.market_agent import MarketAgent
 from agents.return_agent import ReturnAgent
+from agents.scenario_agent import ScenarioAgent
 from agents.portfolio_generator_agent import PortfolioGeneratorAgent
 from agents.optimizer_agent import OptimizerAgent
 from agents.current_portfolio_agent import CurrentPortfolioAgent
@@ -15,6 +16,9 @@ def main():
     return_agent = ReturnAgent()
     returns = return_agent.calculate_returns(prices)
 
+    scenario_agent = ScenarioAgent()
+    scenarios = scenario_agent.generate()
+
     generator = PortfolioGeneratorAgent()
     portfolios = generator.generate(returns.columns)
 
@@ -28,7 +32,8 @@ def main():
     report.plot_frontier(results, current=current)
 
     print()
-    print("PDTA v0.4 completed.")
+    print(f"Scenario count: {len(scenarios)}")
+    print("PDTA v0.6 completed.")
 
 
 if __name__ == "__main__":
