@@ -87,7 +87,8 @@ def main():
 
     report.plot_risk_reward_map(
         normal_results,
-        current=current
+        current=current,
+        policy_recommendation=policy_recommendation
     )
 
     report.plot_scenario_summary(summary)

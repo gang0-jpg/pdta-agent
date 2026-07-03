@@ -30,6 +30,9 @@ class ReportAgent:
                 current["return"],
                 marker="o",
                 s=260,
+                color="purple",
+                edgecolor="black",
+                linewidth=1.5,
                 label="Current Portfolio"
             )
             plt.annotate(
@@ -57,10 +60,7 @@ class ReportAgent:
     def plot_scenario_summary(self, summary: pd.DataFrame):
         plt.figure(figsize=(10, 6))
 
-        plt.bar(
-            summary["scenario"],
-            summary["sharpe"]
-        )
+        plt.bar(summary["scenario"], summary["sharpe"])
 
         plt.title("PDTA Scenario Sharpe Ratio")
         plt.xlabel("Scenario")
@@ -73,7 +73,7 @@ class ReportAgent:
 
         print("Saved output/scenario_summary.png")
 
-    def plot_risk_reward_map(self, results: pd.DataFrame, current=None):
+    def plot_risk_reward_map(self, results: pd.DataFrame, current=None, policy_recommendation=None):
         best_sharpe = results.loc[results["sharpe"].idxmax()]
         min_risk = results.loc[results["risk"].idxmin()]
         max_return = results.loc[results["return"].idxmax()]
@@ -81,15 +81,16 @@ class ReportAgent:
 
         plt.figure(figsize=(12, 7))
 
-        # Good zone: high Sharpe and low drawdown
-        plt.axhspan(1.0, results["sharpe"].max() + 0.1, alpha=0.08, color="green")
-        plt.axvspan(-10, 0, alpha=0.08, color="green")
+        # PDTA Robust Zone
+        plt.axhspan(1.1, results["sharpe"].max() + 0.1, alpha=0.10, color="green")
+        plt.axvspan(-10, 0, alpha=0.10, color="green")
 
         plt.scatter(
             results["max_drawdown"] * 100,
             results["sharpe"],
             s=6,
             alpha=0.30,
+            color="steelblue",
             label="Portfolios"
         )
 
@@ -97,7 +98,10 @@ class ReportAgent:
             best_sharpe["max_drawdown"] * 100,
             best_sharpe["sharpe"],
             marker="*",
-            s=380,
+            s=420,
+            color="gold",
+            edgecolor="black",
+            linewidth=1.2,
             label="Best Sharpe"
         )
 
@@ -105,7 +109,8 @@ class ReportAgent:
             min_risk["max_drawdown"] * 100,
             min_risk["sharpe"],
             marker="s",
-            s=200,
+            s=210,
+            color="green",
             label="Minimum Risk"
         )
 
@@ -113,7 +118,8 @@ class ReportAgent:
             max_return["max_drawdown"] * 100,
             max_return["sharpe"],
             marker="^",
-            s=200,
+            s=210,
+            color="red",
             label="Maximum Return"
         )
 
@@ -121,7 +127,8 @@ class ReportAgent:
             min_drawdown["max_drawdown"] * 100,
             min_drawdown["sharpe"],
             marker="D",
-            s=200,
+            s=210,
+            color="mediumpurple",
             label="Minimum Drawdown"
         )
 
@@ -130,7 +137,7 @@ class ReportAgent:
                 current["max_drawdown"] * 100,
                 current["sharpe"],
                 marker="o",
-                s=320,
+                s=340,
                 color="purple",
                 edgecolor="black",
                 linewidth=2,
@@ -149,10 +156,7 @@ class ReportAgent:
                 "",
                 xy=(best_sharpe["max_drawdown"] * 100, best_sharpe["sharpe"]),
                 xytext=(current["max_drawdown"] * 100, current["sharpe"]),
-                arrowprops=dict(
-                    arrowstyle="->",
-                    lw=2.5
-                )
+                arrowprops=dict(arrowstyle="->", lw=2.5, color="black")
             )
 
         plt.annotate(
@@ -172,14 +176,9 @@ class ReportAgent:
         )
 
         plt.axvline(-10, linestyle="--", linewidth=1)
-        plt.axhline(1.0, linestyle="--", linewidth=1)
+        plt.axhline(1.1, linestyle="--", linewidth=1)
 
-        plt.text(
-            -9.5,
-            1.02,
-            "Robust Zone",
-            fontsize=11
-        )
+        plt.text(-9.7, 1.12, "PDTA Robust Zone", fontsize=11)
 
         plt.title("PDTA Portfolio Evaluation Map")
         plt.xlabel("Max Drawdown (%)")
