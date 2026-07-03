@@ -1,4 +1,6 @@
-import numpy as np
+import backend
+
+xp = backend.xp
 import pandas as pd
 
 from config import N_PORTFOLIOS
@@ -13,7 +15,7 @@ class PortfolioGeneratorAgent:
 
         n_assets = len(asset_names)
 
-        weights = np.random.random((n_portfolios, n_assets))
+        weights = xp.random.random((n_portfolios, n_assets))
         weights = weights / weights.sum(axis=1, keepdims=True)
 
         portfolios = pd.DataFrame(weights, columns=asset_names)

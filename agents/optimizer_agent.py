@@ -1,24 +1,21 @@
-import numpy as np
 import pandas as pd
-
+from backends import xp
 from config import RISK_FREE_RATE
 
 
 class OptimizerAgent:
     def evaluate(self, returns: pd.DataFrame, portfolios: pd.DataFrame):
-        """
-        各ポートフォリオの年率リターン、年率リスク、シャープレシオを計算する。
-        """
-
         mean_returns = returns.mean() * 252
         cov_matrix = returns.cov() * 252
 
-        weights = portfolios.values
+        weights = xp.array(portfolios.values)
+        mean_values = xp.array(mean_returns.values)
+        cov_values = xp.array(cov_matrix.values)
 
-        portfolio_returns = weights @ mean_returns.values
+        portfolio_returns = weights @ mean_values
 
-        portfolio_risks = np.sqrt(
-            np.einsum("ij,jk,ik->i", weights, cov_matrix.values, weights)
+        portfolio_risks = xp.sqrt(
+            xp.einsum("ij,jk,ik->i", weights, cov_values, weights)
         )
 
         sharpe_ratios = (portfolio_returns - RISK_FREE_RATE) / portfolio_risks
@@ -32,20 +29,16 @@ class OptimizerAgent:
 
         print("Saved data/portfolio_results.csv")
 
-        best_sharpe = results.loc[results["sharpe"].idxmax()]
-        min_risk = results.loc[results["risk"].idxmin()]
-        max_return = results.loc[results["return"].idxmax()]
-
         print()
         print("Best Sharpe Portfolio:")
-        print(best_sharpe)
+        print(results.loc[results["sharpe"].idxmax()])
 
         print()
         print("Minimum Risk Portfolio:")
-        print(min_risk)
+        print(results.loc[results["risk"].idxmin()])
 
         print()
         print("Maximum Return Portfolio:")
-        print(max_return)
+        print(results.loc[results["return"].idxmax()])
 
         return results
