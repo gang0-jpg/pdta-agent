@@ -1,6 +1,7 @@
 from agents.market_agent import MarketAgent
 from agents.return_agent import ReturnAgent
 from agents.portfolio_generator_agent import PortfolioGeneratorAgent
+from agents.optimizer_agent import OptimizerAgent
 
 
 def main():
@@ -15,13 +16,12 @@ def main():
     generator = PortfolioGeneratorAgent()
     portfolios = generator.generate(returns.columns)
 
-    print()
-    print("Returns tail:")
-    print(returns.tail())
+    optimizer = OptimizerAgent()
+    results = optimizer.evaluate(returns, portfolios)
 
     print()
-    print("Portfolios head:")
-    print(portfolios.head())
+    print("Portfolio results head:")
+    print(results.head())
 
 
 if __name__ == "__main__":

@@ -5,11 +5,12 @@ class ReturnAgent:
 
     def calculate_returns(self, prices: pd.DataFrame):
 
-        # 欠損値を前方補完
         prices = prices.ffill()
 
-        # 日次リターン
         returns = prices.pct_change().dropna()
+
+        # 異常値を除外
+        returns = returns.clip(lower=-0.2, upper=0.2)
 
         returns.to_csv("data/returns.csv")
 
