@@ -2,6 +2,8 @@
 PDTA Configuration
 """
 
+PDTA_VERSION = "1.0.0"
+
 ASSETS = {
     "TOPIX": "1306.T",
     "NASDAQ100": "1545.T",
@@ -29,3 +31,11 @@ CURRENT_PORTFOLIO = {
     "JPY": 0.46
 }
 
+INVESTMENT_POLICY = {
+    "max_trade_per_asset": 0.03,
+    "cash_min": 0.30,
+    "gold_max": 0.05,
+    "reit_max": 0.05,
+    "bond_max": 0.15,
+    "usd_max": 0.30
+}

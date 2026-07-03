@@ -2,292 +2,280 @@
 
 > GPU-powered AI Agent for Portfolio Optimization and Market Digital Twin
 
-Portfolio Digital Twin Agent (PDTA) は、AI・GPU・モンテカルロシミュレーションを活用したポートフォリオ最適化プラットフォームです。
+PDTA (Portfolio Digital Twin Agent) is an AI framework that aims to realize an **Investor Digital Twin** for personalized investment decision support.
 
-本プロジェクトは **io.net Agent Cloud** を活用し、大量のポートフォリオをGPUで並列評価することを目的としています。
+Unlike traditional portfolio optimization tools, PDTA does not simply search for the portfolio with the highest return.
 
-現在は NumPy によるCPU版を実装しており、今後 CuPy によるGPU高速化、io.net Agent Cloud対応、LLMによる市場シナリオ生成へ発展させます。
+Instead, it models an investor's investment philosophy, risk tolerance, and decision-making process, and searches for a robust portfolio that can withstand a wide range of future market scenarios.
+
+---
+
+# Vision
+
+Traditional portfolio optimization seeks the highest expected return.
+
+PDTA goes one step further.
+
+Instead of finding the "best" portfolio, PDTA aims to build an **Investor Digital Twin** that understands an investor's goals, risk tolerance, investment philosophy, and decision-making process.
+
+The objective is not simply to maximize returns, but to support robust, explainable, and personalized investment decisions under uncertain market conditions.
 
 ---
 
 # Features
 
-現在実装済み
+Current implementation includes:
 
-- 市場データ取得（Yahoo Finance）
-- 日次リターン計算
-- Monte Carlo Portfolio Generation
-- 100,000 Portfolio Simulation
-- Annualized Return
-- Annualized Risk
-- Sharpe Ratio
-- Current Portfolio Evaluation
-- Efficient Frontier Plot
+- MarketAgent
+  - Download market prices using Yahoo Finance
 
----
+- ReturnAgent
+  - Calculate daily returns
 
-# Current Assets
+- PortfolioGeneratorAgent
+  - Generate random portfolios (Monte Carlo)
 
-現在対応している資産
+- OptimizerAgent
+  - Portfolio optimization
+  - Expected Return
+  - Risk (Volatility)
+  - Sharpe Ratio
+  - Maximum Drawdown
 
-| Asset | Symbol |
-|--------|---------|
-| TOPIX | 1306.T |
-| NASDAQ100 | 1545.T |
-| Gold ETF | 1326.T |
-| J-REIT | 1343.T |
-| US Treasury Bond | IEF |
-| USD/JPY | JPY=X |
-| JPY Cash | Internal |
+- CurrentPortfolioAgent
+  - Evaluate the user's current portfolio
 
----
+- ScenarioAgent
+  - Market Scenario Simulation
+  - Normal
+  - Bull Market
+  - Bear Market
+  - High Inflation
+  - JPY Weak
+  - JPY Strong
 
-# Agent Architecture
-
-```
-MarketAgent
-        │
-        ▼
-ReturnAgent
-        │
-        ▼
-PortfolioGeneratorAgent
-        │
-        ▼
-OptimizerAgent
-        │
-        ▼
-CurrentPortfolioAgent
-        │
-        ▼
-ReportAgent
-```
-
-将来的には
-
-```
-ScenarioAgent
-
-GPU Engine
-
-LLM Agent
-
-Market Digital Twin
-
-io.net Agent Cloud
-```
-
-を追加予定です。
+- ReportAgent
+  - Efficient Frontier
+  - Scenario Summary Chart
 
 ---
 
-# Workflow
+# Current Architecture
 
 ```
-Market Data
+                +----------------+
+                | Market Agent   |
+                +----------------+
+                        |
+                        v
+                +----------------+
+                | Return Agent   |
+                +----------------+
+                        |
+                        v
+                +----------------+
+                | Scenario Agent |
+                +----------------+
+                        |
+                        v
+         +----------------------------+
+         | Portfolio Generator Agent  |
+         +----------------------------+
+                        |
+                        v
+                +----------------+
+                | OptimizerAgent |
+                +----------------+
+                        |
+        +---------------+----------------+
+        |                                |
+        v                                v
++----------------------+      +----------------------+
+| Current Portfolio    |      | Report Agent         |
++----------------------+      +----------------------+
+```
 
-        │
+---
 
-        ▼
+# Example Output
 
-Daily Returns
+Current Portfolio
 
-        │
+```
+Sharpe Ratio
 
-        ▼
+Maximum Drawdown
 
-100,000 Portfolios
+Expected Return
 
-        │
+Risk
+```
 
-        ▼
+Best Portfolio
 
-Risk / Return / Sharpe
+```
+Expected Return
 
-        │
+Risk
 
-        ▼
+Sharpe Ratio
+
+Maximum Drawdown
+```
+
+Scenario Analysis
+
+```
+Normal
+
+Bull
+
+Bear
+
+High Inflation
+
+JPY Weak
+
+JPY Strong
+```
 
 Efficient Frontier
 
-        │
+```
+output/frontier.png
+```
 
-        ▼
+Scenario Summary
 
-Current Portfolio Evaluation
+```
+output/scenario_summary.png
 ```
 
 ---
 
-# Current Portfolio
-
-現在は以下の資産配分を評価しています。
-
-| Asset | Weight |
-|--------|--------|
-| TOPIX | 14% |
-| NASDAQ100 | 0% |
-| Gold | 5% |
-| J-REIT | 4% |
-| US Bond | 8% |
-| USD Cash | 23% |
-| JPY Cash | 46% |
-
----
-
-# Output
-
-実行すると
+# Project Structure
 
 ```
-data/
+pdta-agent/
 
-prices.csv
-
-returns.csv
-
-portfolios.csv
-
-portfolio_results.csv
-
-output/
-
-frontier.png
+├── agents/
+│   ├── market_agent.py
+│   ├── return_agent.py
+│   ├── scenario_agent.py
+│   ├── portfolio_generator_agent.py
+│   ├── optimizer_agent.py
+│   ├── current_portfolio_agent.py
+│   └── report_agent.py
+│
+├── backends/
+│   ├── __init__.py
+│   └── numpy_backend.py
+│
+├── data/
+├── docs/
+├── optimizer/
+├── output/
+├── tests/
+│
+├── config.py
+├── main.py
+├── requirements.txt
+└── README.md
 ```
-
-が生成されます。
-
----
-
-# How to Run
-
-```bash
-pip install -r requirements.txt
-
-python main.py
-```
-
----
-
-# Current Version
-
-## PDTA v0.5
-
-Completed
-
-- Project Skeleton
-- MarketAgent
-- ReturnAgent
-- PortfolioGeneratorAgent
-- OptimizerAgent
-- CurrentPortfolioAgent
-- ReportAgent
-- Efficient Frontier
-- JPY Cash Support
 
 ---
 
 # Roadmap
 
-## v0.6
+## Version 0.x
 
-- Improved Efficient Frontier
-- Better Visualization
-- Current Portfolio Highlight
-
----
-
-## v0.7
-
-GPU Acceleration
-
-- CuPy
-- CUDA
-
----
-
-## v0.8
-
-io.net Agent Cloud
-
-- Distributed GPU Execution
-- Large-scale Portfolio Evaluation
-
----
-
-## v0.9
-
-LLM Integration
-
-- Market Scenario Generation
-- Economic Forecast
-- Robust Portfolio Optimization
-
----
-
-## v1.0
-
-Portfolio Digital Twin
-
-- AI Agents
-- Market Digital Twin
-- GPU Computing
-- io.net
-- LLM
+- MarketAgent
+- Portfolio Optimization
 - Monte Carlo Simulation
+- Efficient Frontier
+- Scenario Simulation
+- Maximum Drawdown
+- CPU Backend
 
 ---
 
-# Technology Stack
+## Version 1.x
+
+- GPU Backend (CuPy)
+- io.net Integration
+- NVIDIA H100 Support
+- 1 Million Portfolios
+- 100 Market Scenarios
+
+---
+
+## Version 2.x
+
+Investor Digital Twin
+
+- Personalized Investment Policy
+- Portfolio Rebalancing
+- Decision Agent
+- Portfolio Recommendation
+- Robust Score
+- AI Portfolio Manager
+
+---
+
+# Future Vision
+
+PDTA evolves toward an **Investor Digital Twin**.
+
+Rather than recommending the same portfolio to every investor, PDTA learns each investor's own:
+
+- Investment philosophy
+- Risk tolerance
+- Return target
+- Rebalancing strategy
+- Decision-making style
+
+The ultimate goal is to create an AI agent that behaves like a personal fund manager.
+
+---
+
+# Philosophy
+
+PDTA does not pursue a single "optimal" portfolio.
+
+Instead, it searches for the portfolio that best matches each investor's own investment philosophy, risk tolerance, and long-term objectives.
+
+Every investor is different.
+
+Therefore every Digital Twin should also be different.
+
+---
+
+# Technology
 
 - Python
-- NumPy
 - Pandas
+- NumPy
 - Matplotlib
-- SciPy
 - yfinance
-- GitHub
-- Cursor
-- io.net (planned)
-- CuPy (planned)
-
----
-
-# Research Topics
-
-- Portfolio Optimization
-- Efficient Frontier
 - Monte Carlo Simulation
 - GPU Computing
+- io.net
+- NVIDIA H100
 - AI Agents
-- Market Digital Twin
-- Financial Digital Twin
-- Robust Portfolio Optimization
+- Digital Twin
 
 ---
 
-# Disclaimer
+# License
 
-This project is intended for research, education, technology demonstrations, and community presentations.
-
-It is **NOT** investment advice.
-
----
-
-# LT Presentation
-
-Portfolio Digital Twin Agent
-
-**GPUで10万通りのポートフォリオを最適化してみた**
-
-データ分析・AI × データサイエンスコミュニティ 京橋もくもく組
+MIT License
 
 ---
 
 # Author
 
-岡 善治
+Yoshiharu Oka
 
-GitHub
+Portfolio Digital Twin Agent (PDTA)
 
-https://github.com/gang0-jpg/pdta-agent
+Toward an Investor Digital Twin

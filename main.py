@@ -1,4 +1,7 @@
 import pandas as pd
+from config import PDTA_VERSION
+from agents.policy_agent import PolicyAgent
+from agents.decision_agent import DecisionAgent
 from agents.market_agent import MarketAgent
 from agents.return_agent import ReturnAgent
 from agents.scenario_agent import ScenarioAgent
@@ -55,26 +58,49 @@ def main():
     current_agent = CurrentPortfolioAgent()
     current = current_agent.evaluate(returns)
 
-    report = ReportAgent()
-    report.plot_frontier(normal_results, current=current)
-
-    print()
     summary = pd.DataFrame(scenario_results)
 
     summary.to_csv(
         "data/scenario_summary.csv",
         index=False
     )
+
+    best_portfolio = normal_results.loc[
+        normal_results["sharpe"].idxmax()
+    ]
+
+    decision = DecisionAgent()
+
+    recommendation = decision.recommend(
+        current,
+        best_portfolio
+    )
+    policy = PolicyAgent()
+    policy_recommendation = policy.apply(recommendation)
+
+    report = ReportAgent()
+
+    report.plot_frontier(
+        normal_results,
+        current=current
+    )
+
     report.plot_scenario_summary(summary)
 
     print()
-    print(summary)
-
-    print()
-    print("Saved data/scenario_summary.csv")
-    print("Scenario count:", len(scenarios))
-    print("PDTA v0.7 completed.")
-
+    print("=" * 60)
+    print(f"PDTA v{PDTA_VERSION} completed.")
+    print("=" * 60)
+    print("Generated files:")
+    print("- data/prices.csv")
+    print("- data/returns.csv")
+    print("- data/portfolios.csv")
+    print("- data/portfolio_results.csv")
+    print("- data/scenario_summary.csv")
+    print("- data/recommendation.csv")
+    print("- data/policy_recommendation.csv")
+    print("- output/frontier.png")
+    print("- output/scenario_summary.png")
 
 if __name__ == "__main__":
     main()
