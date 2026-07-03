@@ -2,6 +2,8 @@ from agents.market_agent import MarketAgent
 from agents.return_agent import ReturnAgent
 from agents.portfolio_generator_agent import PortfolioGeneratorAgent
 from agents.optimizer_agent import OptimizerAgent
+from agents.current_portfolio_agent import CurrentPortfolioAgent
+from agents.report_agent import ReportAgent
 
 
 def main():
@@ -19,9 +21,14 @@ def main():
     optimizer = OptimizerAgent()
     results = optimizer.evaluate(returns, portfolios)
 
+    current_agent = CurrentPortfolioAgent()
+    current = current_agent.evaluate(returns)
+
+    report = ReportAgent()
+    report.plot_frontier(results, current=current)
+
     print()
-    print("Portfolio results head:")
-    print(results.head())
+    print("PDTA v0.4 completed.")
 
 
 if __name__ == "__main__":
