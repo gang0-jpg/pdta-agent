@@ -1,6 +1,6 @@
 import pandas as pd
 import uuid
-from database.db import init_db, save_pdta_run
+from database.db import init_db, save_pdta_memory
 from db.repository import (
     init_db,
     save_run,                 # ← これを追加
@@ -96,12 +96,30 @@ def main():
     )
     policy = PolicyAgent()
     policy_recommendation = policy.apply(recommendation)
-    save_pdta_run(
-        version="v0.1-postgres",
-        recommendation=recommendation,
-        policy_recommendation=policy_recommendation,
-    )
 
+    save_pdta_memory(
+        version="v0.2-investor-memory",
+
+        market={
+            "assets": list(returns.columns),
+            "price_rows": len(prices),
+            "scenario_count": len(scenarios),
+        },
+
+        portfolio=current.to_dict(),
+
+        recommendation=recommendation.to_dict("records"),
+
+        decision={
+            "expected_return": float(best_portfolio["return"]),
+            "risk": float(best_portfolio["risk"]),
+            "sharpe": float(best_portfolio["sharpe"]),
+        },
+
+        policy=policy_recommendation.to_dict("records"),
+
+        investor_note="Automatic PDTA run",
+    )
 
     report = ReportAgent()
 
