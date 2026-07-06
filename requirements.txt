@@ -1,0 +1,6 @@
+pandas
+numpy
+matplotlib
+yfinance
+psycopg2-binary
+python-dotenv
