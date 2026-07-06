@@ -1,0 +1,150 @@
+<h1 id="overall-architecture">05 Overall Architecture</h1>
+<h2 id="design-philosophy">5.1 Design Philosophy</h2>
+<p>Portfolio Digital Twin Agent (PDTA) is designed as a modular AI
+framework.</p>
+<p>Rather than implementing a single monolithic application, PDTA
+separates the investment process into independent AI agents, each
+responsible for a specific task.</p>
+<p>This modular architecture provides several advantages:</p>
+<ul>
+<li>Separation of responsibilities</li>
+<li>Easy extensibility</li>
+<li>Independent testing</li>
+<li>Future integration of new AI components</li>
+<li>Continuous evolution of the Investor Digital Twin</li>
+</ul>
+<p>Each agent produces structured outputs that become inputs to the next
+stage of the investment pipeline.</p>
+<p>This design enables both reproducibility and long-term learning.</p>
+<hr />
+<h2 id="overall-workflow">5.2 Overall Workflow</h2>
+<p>The current PDTA workflow consists of the following stages.</p>
+<pre><code>Market Data
+      │
+      ▼
+MarketAgent
+      │
+      ▼
+ReturnAgent
+      │
+      ▼
+ScenarioAgent
+      │
+      ▼
+PortfolioGeneratorAgent
+      │
+      ▼
+OptimizerAgent
+      │
+      ▼
+DecisionAgent
+      │
+      ▼
+PolicyAgent
+      │
+      ▼
+Investor Memory
+      │
+      ▼
+Difference Analyzer</code></pre>
+<p>Each stage has a clearly defined responsibility and communicates
+using structured data.</p>
+<hr />
+<h2 id="layered-architecture">5.3 Layered Architecture</h2>
+<p>PDTA may also be viewed as a layered architecture.</p>
+<pre><code>Presentation Layer
+    White Paper
+    Reports
+    Charts
+
+──────────────
+
+Decision Layer
+    Decision Agent
+    Policy Agent
+
+──────────────
+
+Optimization Layer
+    Optimizer
+    Portfolio Generator
+
+──────────────
+
+Analysis Layer
+    Return Agent
+    Scenario Agent
+
+──────────────
+
+Market Layer
+    Market Agent
+
+──────────────
+
+Memory Layer
+    PostgreSQL
+    Investor Memory</code></pre>
+<p>This layered architecture simplifies future extensions while
+maintaining a clear separation of responsibilities.</p>
+<hr />
+<h2 id="current-implementation">5.4 Current Implementation</h2>
+<p>Version 0.3 currently implements:</p>
+<ul>
+<li>Market data acquisition</li>
+<li>Return calculation</li>
+<li>Scenario evaluation</li>
+<li>Portfolio optimization</li>
+<li>Current portfolio evaluation</li>
+<li>Recommendation generation</li>
+<li>Policy adjustment</li>
+<li>Investor Memory</li>
+<li>Difference Analysis</li>
+</ul>
+<p>These components already form a complete investment analysis
+pipeline.</p>
+<hr />
+<h2 id="planned-architecture">5.5 Planned Architecture</h2>
+<p>Future versions will extend the architecture with additional AI
+agents.</p>
+<pre><code>Investor Memory
+        │
+        ▼
+Reflection Agent
+        │
+        ▼
+Explanation Agent
+        │
+        ▼
+Persona Learning
+        │
+        ▼
+Investor Digital Twin</code></pre>
+<p>These components will allow PDTA to move beyond portfolio
+optimization toward continuous investor modeling.</p>
+<hr />
+<h2 id="architectural-principles">5.6 Architectural Principles</h2>
+<p>The PDTA architecture follows five design principles.</p>
+<ol type="1">
+<li>Modular AI Agents</li>
+</ol>
+<p>Each component has a single responsibility.</p>
+<ol start="2" type="1">
+<li>Persistent Memory</li>
+</ol>
+<p>Historical investment information is preserved rather than
+discarded.</p>
+<ol start="3" type="1">
+<li>Explainability</li>
+</ol>
+<p>Investment recommendations should be understandable.</p>
+<ol start="4" type="1">
+<li>Continuous Learning</li>
+</ol>
+<p>The framework evolves through accumulated investor experience.</p>
+<ol start="5" type="1">
+<li>Human-Centered AI</li>
+</ol>
+<p>PDTA is designed to assist investors, not replace them.</p>
+<p>These principles provide the foundation for the long-term evolution
+of the Investor Digital Twin.</p>

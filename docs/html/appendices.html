@@ -1,0 +1,239 @@
+<h1 id="appendices">Appendices</h1>
+<h1 id="appendix-a.-current-pdta-implementation">Appendix A. Current
+PDTA Implementation</h1>
+<p>The current implementation of the Portfolio Digital Twin Agent (PDTA)
+is developed in Python and follows a modular AI agent architecture.</p>
+<p>The project currently includes:</p>
+<ul>
+<li>MarketAgent</li>
+<li>ReturnAgent</li>
+<li>ScenarioAgent</li>
+<li>PortfolioGeneratorAgent</li>
+<li>OptimizerAgent</li>
+<li>CurrentPortfolioAgent</li>
+<li>DecisionAgent</li>
+<li>PolicyAgent</li>
+<li>MemoryAgent</li>
+<li>DifferenceAnalyzer</li>
+</ul>
+<p>Future versions will introduce ReflectionAgent, ExplanationAgent,
+PersonaAgent, and TwinAgent.</p>
+<hr />
+<h1 id="appendix-b.-technology-stack">Appendix B. Technology Stack</h1>
+<p>Current implementation technologies include:</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Technology</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Language</td>
+<td>Python 3.11</td>
+</tr>
+<tr>
+<td>Database</td>
+<td>PostgreSQL 16</td>
+</tr>
+<tr>
+<td>Storage</td>
+<td>JSONB</td>
+</tr>
+<tr>
+<td>Data Analysis</td>
+<td>pandas</td>
+</tr>
+<tr>
+<td>Numerical Computing</td>
+<td>NumPy</td>
+</tr>
+<tr>
+<td>Portfolio Optimization</td>
+<td>Monte Carlo Simulation</td>
+</tr>
+<tr>
+<td>Visualization</td>
+<td>Matplotlib</td>
+</tr>
+<tr>
+<td>Version Control</td>
+<td>Git / GitHub</td>
+</tr>
+</tbody>
+</table>
+<p>Future versions may additionally employ:</p>
+<ul>
+<li>Large Language Models (LLMs)</li>
+<li>Retrieval-Augmented Generation (RAG)</li>
+<li>Knowledge Graphs</li>
+<li>Reinforcement Learning</li>
+<li>Multi-Agent Frameworks</li>
+</ul>
+<hr />
+<h1 id="appendix-c.-repository-structure">Appendix C. Repository
+Structure</h1>
+<pre><code>pdta-agent/
+
+├── agents/
+├── database/
+├── docs/
+│   └── whitepaper/
+├── optimizer/
+├── output/
+├── tests/
+├── main.py
+├── README.md
+└── requirements.txt</code></pre>
+<p>The modular repository structure reflects the AI agent architecture
+described in this White Paper.</p>
+<hr />
+<h1 id="appendix-d.-investor-memory-example">Appendix D. Investor Memory
+Example</h1>
+<p>A simplified Investor Memory record is shown below.</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;version&quot;</span><span class="fu">:</span> <span class="st">&quot;v0.3&quot;</span><span class="fu">,</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;market&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;scenario_count&quot;</span><span class="fu">:</span> <span class="dv">6</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">},</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;portfolio&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;JPY&quot;</span><span class="fu">:</span> <span class="fl">0.46</span><span class="fu">,</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;USDJPY&quot;</span><span class="fu">:</span> <span class="fl">0.23</span><span class="fu">,</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;GOLD&quot;</span><span class="fu">:</span> <span class="fl">0.05</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">},</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;recommendation&quot;</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;Asset&quot;</span><span class="fu">:</span> <span class="st">&quot;NASDAQ100&quot;</span><span class="fu">,</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;Action&quot;</span><span class="fu">:</span> <span class="st">&quot;BUY&quot;</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;policy&quot;</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;Asset&quot;</span><span class="fu">:</span> <span class="st">&quot;NASDAQ100&quot;</span><span class="fu">,</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;AdjustedAction&quot;</span><span class="fu">:</span> <span class="st">&quot;BUY&quot;</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  <span class="ot">]</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<p>Investor Memory is stored using PostgreSQL JSONB, allowing flexible
+schema evolution and AI-friendly structured storage.</p>
+<hr />
+<h1 id="appendix-e.-current-research-status">Appendix E. Current
+Research Status</h1>
+<p>Completed:</p>
+<ul>
+<li>Portfolio Optimization</li>
+<li>Scenario Analysis</li>
+<li>Investor Memory</li>
+<li>Difference Analysis</li>
+</ul>
+<p>In Progress:</p>
+<ul>
+<li>Reflection</li>
+<li>Explainable AI</li>
+</ul>
+<p>Planned:</p>
+<ul>
+<li>Persona Learning</li>
+<li>Investor Digital Twin</li>
+</ul>
+<p>Future:</p>
+<ul>
+<li>Multi-Agent Digital Twins</li>
+<li>Collaborative Investor Twins</li>
+</ul>
+<hr />
+<h1 id="appendix-f.-glossary">Appendix F. Glossary</h1>
+<table>
+<colgroup>
+<col style="width: 31%" />
+<col style="width: 68%" />
+</colgroup>
+<thead>
+<tr>
+<th>Term</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PDTA</td>
+<td>Portfolio Digital Twin Agent</td>
+</tr>
+<tr>
+<td>Investor Memory</td>
+<td>Persistent investment history</td>
+</tr>
+<tr>
+<td>Difference Analysis</td>
+<td>Detection of changes between investment histories</td>
+</tr>
+<tr>
+<td>Reflection</td>
+<td>AI evaluation of previous investment decisions</td>
+</tr>
+<tr>
+<td>Explainable AI</td>
+<td>Human-understandable investment reasoning</td>
+</tr>
+<tr>
+<td>Persona Learning</td>
+<td>Behavioral modeling of investors</td>
+</tr>
+<tr>
+<td>Investor Digital Twin</td>
+<td>Computational representation of an investor</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="appendix-g.-reproducibility">Appendix G. Reproducibility</h1>
+<p>The objective of PDTA is to provide a reproducible research
+framework.</p>
+<p>The following components support reproducibility:</p>
+<ul>
+<li>Modular AI agents</li>
+<li>Persistent Investor Memory</li>
+<li>Version-controlled source code</li>
+<li>PostgreSQL JSONB storage</li>
+<li>Open documentation</li>
+<li>Public GitHub repository</li>
+</ul>
+<p>Future work will include:</p>
+<ul>
+<li>Benchmark datasets</li>
+<li>Standard evaluation protocols</li>
+<li>Experimental reproducibility guidelines</li>
+</ul>
+<hr />
+<h1 id="appendix-h.-future-white-paper-editions">Appendix H. Future
+White Paper Editions</h1>
+<p>This White Paper represents Version 1.0 of the conceptual design.</p>
+<p>Future editions are expected to incorporate:</p>
+<ul>
+<li>ReflectionAgent implementation</li>
+<li>Explainable AI implementation</li>
+<li>Persona Learning experiments</li>
+<li>Investor Digital Twin evaluation</li>
+<li>Academic validation</li>
+<li>Case studies</li>
+</ul>
+<p>The White Paper will evolve together with the PDTA research
+project.</p>
+<hr />
+<h1 id="appendix-i.-about-the-author">Appendix I. About the Author</h1>
+<p><strong>Zenji Oka</strong></p>
+<p>Portfolio Digital Twin Agent (PDTA)</p>
+<p>Independent Research Project</p>
+<p>Research Interests</p>
+<ul>
+<li>Artificial Intelligence</li>
+<li>Digital Twins</li>
+<li>Behavioral Finance</li>
+<li>Explainable AI</li>
+<li>Multi-Agent Systems</li>
+<li>Human–AI Collaboration</li>
+</ul>
+<p>This White Paper documents the current vision and research direction
+of the Portfolio Digital Twin Agent project.</p>

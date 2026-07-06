@@ -1,0 +1,276 @@
+<h1 id="agent-design">06 Agent Design</h1>
+<h2 id="design-philosophy">6.1 Design Philosophy</h2>
+<p>Portfolio Digital Twin Agent (PDTA) adopts a modular multi-agent
+architecture.</p>
+<p>Each AI agent is responsible for a single task within the investment
+workflow. Rather than implementing all functionality in one large
+application, PDTA decomposes the investment process into specialized
+components.</p>
+<p>This design provides several advantages:</p>
+<ul>
+<li>Clear separation of responsibilities</li>
+<li>Easy maintenance and testing</li>
+<li>Flexible replacement of individual components</li>
+<li>Future extensibility</li>
+<li>Continuous evolution of the Investor Digital Twin</li>
+</ul>
+<p>Each agent communicates through structured data, allowing the overall
+system to remain modular and reproducible.</p>
+<hr />
+<h2 id="current-agent-architecture">6.2 Current Agent Architecture</h2>
+<p>The current implementation consists of the following agents.</p>
+<pre><code>MarketAgent
+      │
+      ▼
+ReturnAgent
+      │
+      ▼
+ScenarioAgent
+      │
+      ▼
+PortfolioGeneratorAgent
+      │
+      ▼
+OptimizerAgent
+      │
+      ▼
+CurrentPortfolioAgent
+      │
+      ▼
+DecisionAgent
+      │
+      ▼
+PolicyAgent
+      │
+      ▼
+MemoryAgent
+      │
+      ▼
+DifferenceAnalyzer</code></pre>
+<p>Each agent performs a well-defined task within the investment
+pipeline.</p>
+<hr />
+<h2 id="agent-descriptions">6.3 Agent Descriptions</h2>
+<h3 id="marketagent">MarketAgent</h3>
+<p>Responsibilities:</p>
+<ul>
+<li>Download market prices</li>
+<li>Retrieve historical asset data</li>
+<li>Prepare datasets for analysis</li>
+</ul>
+<p>Output:</p>
+<ul>
+<li>Historical market prices</li>
+</ul>
+<hr />
+<h3 id="returnagent">ReturnAgent</h3>
+<p>Responsibilities:</p>
+<ul>
+<li>Calculate daily returns</li>
+<li>Prepare return matrices</li>
+<li>Support portfolio optimization</li>
+</ul>
+<p>Output:</p>
+<ul>
+<li>Daily return data</li>
+</ul>
+<hr />
+<h3 id="scenarioagent">ScenarioAgent</h3>
+<p>Responsibilities:</p>
+<ul>
+<li>Generate market scenarios</li>
+<li>Apply hypothetical market shocks</li>
+<li>Evaluate portfolio robustness</li>
+</ul>
+<p>Typical scenarios include:</p>
+<ul>
+<li>Normal Market</li>
+<li>Bull Market</li>
+<li>Bear Market</li>
+<li>High Inflation</li>
+<li>JPY Weakening</li>
+<li>JPY Strengthening</li>
+</ul>
+<hr />
+<h3 id="portfoliogeneratoragent">PortfolioGeneratorAgent</h3>
+<p>Responsibilities:</p>
+<ul>
+<li>Generate Monte Carlo portfolios</li>
+<li>Produce random portfolio weights</li>
+<li>Prepare optimization candidates</li>
+</ul>
+<p>Output:</p>
+<ul>
+<li>Candidate portfolios</li>
+</ul>
+<hr />
+<h3 id="optimizeragent">OptimizerAgent</h3>
+<p>Responsibilities:</p>
+<p>Evaluate each portfolio using:</p>
+<ul>
+<li>Expected Return</li>
+<li>Portfolio Risk</li>
+<li>Sharpe Ratio</li>
+<li>Maximum Drawdown</li>
+</ul>
+<p>Output:</p>
+<ul>
+<li>Portfolio evaluation results</li>
+</ul>
+<hr />
+<h3 id="currentportfolioagent">CurrentPortfolioAgent</h3>
+<p>Responsibilities:</p>
+<ul>
+<li>Evaluate the investor’s current portfolio</li>
+<li>Compare current allocation with optimized portfolios</li>
+</ul>
+<p>Output:</p>
+<ul>
+<li>Current portfolio metrics</li>
+</ul>
+<hr />
+<h3 id="decisionagent">DecisionAgent</h3>
+<p>Responsibilities:</p>
+<ul>
+<li>Compare optimized portfolios with the current portfolio</li>
+<li>Generate investment recommendations</li>
+</ul>
+<p>Typical outputs include:</p>
+<ul>
+<li>BUY</li>
+<li>SELL</li>
+<li>HOLD</li>
+</ul>
+<hr />
+<h3 id="policyagent">PolicyAgent</h3>
+<p>Responsibilities:</p>
+<p>Apply investment policy constraints.</p>
+<p>Examples include:</p>
+<ul>
+<li>Maximum buy amount</li>
+<li>Maximum sell amount</li>
+<li>Risk management rules</li>
+<li>Position adjustment policies</li>
+</ul>
+<p>PolicyAgent transforms mathematical recommendations into practical
+investment actions.</p>
+<hr />
+<h3 id="memoryagent">MemoryAgent</h3>
+<p>Responsibilities:</p>
+<p>Persist investment history.</p>
+<p>Stored information includes:</p>
+<ul>
+<li>Market conditions</li>
+<li>Portfolio composition</li>
+<li>Optimization results</li>
+<li>Recommendations</li>
+<li>Policy decisions</li>
+<li>Investor notes</li>
+</ul>
+<p>MemoryAgent uses PostgreSQL JSONB to preserve structured investment
+history.</p>
+<hr />
+<h3 id="differenceanalyzer">DifferenceAnalyzer</h3>
+<p>Responsibilities:</p>
+<p>Compare historical Investor Memory.</p>
+<p>The analyzer identifies:</p>
+<ul>
+<li>Target allocation changes</li>
+<li>Recommendation changes</li>
+<li>Policy changes</li>
+<li>Stable investment behavior</li>
+</ul>
+<p>Difference analysis provides the first step toward behavioral
+learning.</p>
+<hr />
+<h2 id="planned-agents">6.4 Planned Agents</h2>
+<p>Future versions of PDTA will introduce additional AI agents.</p>
+<h3 id="reflectionagent">ReflectionAgent</h3>
+<p>Evaluate previous investment decisions.</p>
+<p>Generate lessons learned from historical investment behavior.</p>
+<hr />
+<h3 id="explanationagent">ExplanationAgent</h3>
+<p>Generate natural-language explanations using Large Language Models
+(LLMs).</p>
+<p>Explain:</p>
+<ul>
+<li>Why recommendations changed</li>
+<li>Why portfolio weights changed</li>
+<li>Why investment policy was applied</li>
+</ul>
+<hr />
+<h3 id="personaagent">PersonaAgent</h3>
+<p>Learn long-term investment behavior.</p>
+<p>Identify:</p>
+<ul>
+<li>Investment philosophy</li>
+<li>Risk preference</li>
+<li>Behavioral characteristics</li>
+</ul>
+<p>PersonaAgent represents the long-term behavioral model of an
+investor.</p>
+<hr />
+<h3 id="twinagent">TwinAgent</h3>
+<p>The final integration layer.</p>
+<p>TwinAgent combines:</p>
+<ul>
+<li>Investor Memory</li>
+<li>Difference Analysis</li>
+<li>Reflection</li>
+<li>Persona Learning</li>
+</ul>
+<p>to construct a complete Investor Digital Twin.</p>
+<hr />
+<h2 id="agent-collaboration">6.5 Agent Collaboration</h2>
+<p>Rather than acting independently, the agents cooperate through a
+sequential workflow.</p>
+<pre><code>Market
+
+↓
+
+Analysis
+
+↓
+
+Optimization
+
+↓
+
+Decision
+
+↓
+
+Memory
+
+↓
+
+Learning</code></pre>
+<p>Each execution of PDTA enriches Investor Memory, enabling future
+agents to learn from accumulated investment history.</p>
+<hr />
+<h2 id="design-principles">6.6 Design Principles</h2>
+<p>The PDTA Agent Architecture follows five principles.</p>
+<h3 id="single-responsibility">1. Single Responsibility</h3>
+<p>Each agent performs one clearly defined task.</p>
+<hr />
+<h3 id="modular-design">2. Modular Design</h3>
+<p>Agents can be replaced or extended independently.</p>
+<hr />
+<h3 id="persistent-memory">3. Persistent Memory</h3>
+<p>Historical decisions are preserved for future learning.</p>
+<hr />
+<h3 id="explainability">4. Explainability</h3>
+<p>Investment decisions should be understandable by investors.</p>
+<hr />
+<h3 id="continuous-learning">5. Continuous Learning</h3>
+<p>Every execution contributes to the long-term construction of the
+Investor Digital Twin.</p>
+<hr />
+<h2 id="summary">6.7 Summary</h2>
+<p>The modular AI Agent architecture forms the foundation of PDTA.</p>
+<p>Current agents provide market analysis, optimization, recommendation
+generation, and persistent memory.</p>
+<p>Future agents will introduce reflection, explanation, persona
+learning, and behavioral modeling.</p>
+<p>Together, these agents transform PDTA from a portfolio optimization
+system into a continuously evolving Investor Digital Twin framework.</p>

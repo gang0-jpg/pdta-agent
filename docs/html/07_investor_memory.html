@@ -1,0 +1,186 @@
+<h1 id="investor-memory">07 Investor Memory</h1>
+<h2 id="motivation">7.1 Motivation</h2>
+<p>Traditional portfolio optimization systems typically perform
+calculations, generate recommendations, and then discard the
+intermediate decision process.</p>
+<p>As a result, every execution begins without knowledge of previous
+investment decisions.</p>
+<p>PDTA adopts a different approach.</p>
+<p>Investment decisions should accumulate over time.</p>
+<p>Every recommendation, portfolio adjustment, and market observation
+contributes to a growing body of investor knowledge.</p>
+<p>This persistent knowledge base is called <strong>Investor
+Memory</strong>.</p>
+<p>Investor Memory enables PDTA to learn from historical investment
+behavior rather than treating each portfolio optimization as an isolated
+event.</p>
+<hr />
+<h2 id="design-philosophy">7.2 Design Philosophy</h2>
+<p>Investor Memory is designed according to three fundamental
+principles.</p>
+<h3 id="persistence">Persistence</h3>
+<p>Investment history should never be discarded.</p>
+<p>Every execution becomes part of the investor’s accumulated
+experience.</p>
+<h3 id="traceability">Traceability</h3>
+<p>Every recommendation should be traceable back to:</p>
+<ul>
+<li>Market conditions</li>
+<li>Portfolio composition</li>
+<li>Optimization results</li>
+<li>Investment policy</li>
+</ul>
+<h3 id="future-learning">Future Learning</h3>
+<p>Historical investment records provide the foundation for:</p>
+<ul>
+<li>Reflection</li>
+<li>Explainable AI</li>
+<li>Persona Learning</li>
+<li>Investor Digital Twin</li>
+</ul>
+<p>Investor Memory therefore serves as the long-term knowledge base of
+PDTA.</p>
+<hr />
+<h2 id="database-architecture">7.3 Database Architecture</h2>
+<p>PDTA stores Investor Memory using PostgreSQL.</p>
+<p>Rather than designing a large number of normalized tables, PDTA
+stores investment snapshots using <strong>JSONB</strong>.</p>
+<p>This approach provides several advantages:</p>
+<ul>
+<li>Flexible schema evolution</li>
+<li>Efficient storage</li>
+<li>Native JSON querying</li>
+<li>Compatibility with AI-generated data</li>
+<li>Easy integration with Large Language Models</li>
+</ul>
+<p>The database therefore acts not only as persistent storage but also
+as structured long-term memory.</p>
+<hr />
+<h2 id="memory-structure">7.4 Memory Structure</h2>
+<p>Each Investor Memory record contains a complete snapshot of one PDTA
+execution.</p>
+<p>Typical fields include:</p>
+<ul>
+<li>Execution time</li>
+<li>PDTA version</li>
+<li>Market conditions</li>
+<li>Portfolio allocation</li>
+<li>Optimization results</li>
+<li>Investment recommendation</li>
+<li>Policy adjustment</li>
+<li>Investor notes</li>
+</ul>
+<p>This snapshot-based design allows every execution to be reproduced
+and analyzed independently.</p>
+<hr />
+<h2 id="example-memory-record">7.5 Example Memory Record</h2>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;version&quot;</span><span class="fu">:</span> <span class="st">&quot;v0.3&quot;</span><span class="fu">,</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;market&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;USDJPY&quot;</span><span class="fu">:</span> <span class="fl">162.3</span><span class="fu">,</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;scenario_count&quot;</span><span class="fu">:</span> <span class="dv">6</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">},</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;portfolio&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;JPY&quot;</span><span class="fu">:</span> <span class="fl">0.46</span><span class="fu">,</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;USDJPY&quot;</span><span class="fu">:</span> <span class="fl">0.23</span><span class="fu">,</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;GOLD&quot;</span><span class="fu">:</span> <span class="fl">0.05</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">},</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;recommendation&quot;</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;Asset&quot;</span><span class="fu">:</span> <span class="st">&quot;NASDAQ100&quot;</span><span class="fu">,</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;Action&quot;</span><span class="fu">:</span> <span class="st">&quot;BUY&quot;</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;policy&quot;</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;Asset&quot;</span><span class="fu">:</span> <span class="st">&quot;NASDAQ100&quot;</span><span class="fu">,</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;AdjustedAction&quot;</span><span class="fu">:</span> <span class="st">&quot;BUY&quot;</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;investor_note&quot;</span><span class="fu">:</span> <span class="st">&quot;Automatic PDTA run&quot;</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<p>The JSONB representation allows PDTA to preserve structured
+investment history while remaining flexible enough to accommodate future
+extensions.</p>
+<hr />
+<h2 id="investor-memory-workflow">7.6 Investor Memory Workflow</h2>
+<p>Each execution of PDTA generates a new memory record.</p>
+<pre><code>Market Data
+
+↓
+
+Portfolio Optimization
+
+↓
+
+Recommendation
+
+↓
+
+Policy Adjustment
+
+↓
+
+Investor Memory
+
+↓
+
+Historical Database</code></pre>
+<p>Unlike temporary program variables, Investor Memory persists across
+multiple executions.</p>
+<hr />
+<h2 id="relationship-with-memoryagent">7.7 Relationship with
+MemoryAgent</h2>
+<p>MemoryAgent provides the interface between the AI agents and
+PostgreSQL.</p>
+<p>Its responsibilities include:</p>
+<ul>
+<li>Reading historical memories</li>
+<li>Retrieving recent investment history</li>
+<li>Comparing previous executions</li>
+<li>Supplying historical context to future AI agents</li>
+</ul>
+<p>MemoryAgent transforms the database into an active component of the
+AI framework.</p>
+<hr />
+<h2 id="relationship-with-difference-analysis">7.8 Relationship with
+Difference Analysis</h2>
+<p>Investor Memory alone stores history.</p>
+<p>Difference Analysis extracts meaning from history.</p>
+<p>By comparing consecutive Investor Memory records, PDTA
+identifies:</p>
+<ul>
+<li>Portfolio allocation changes</li>
+<li>Recommendation changes</li>
+<li>Policy changes</li>
+<li>Stable investment behavior</li>
+</ul>
+<p>Investor Memory provides the data.</p>
+<p>Difference Analysis provides interpretation.</p>
+<hr />
+<h2 id="toward-reflection">7.9 Toward Reflection</h2>
+<p>Investor Memory represents the first stage of continuous
+learning.</p>
+<p>Future Reflection Agents will analyze historical memories and answer
+questions such as:</p>
+<ul>
+<li>Why did recommendations change?</li>
+<li>Which investment decisions proved effective?</li>
+<li>Which decisions should be reconsidered?</li>
+<li>How has the investor’s behavior evolved?</li>
+</ul>
+<p>Investor Memory therefore enables AI systems to learn from experience
+rather than relying solely on current market data.</p>
+<hr />
+<h2 id="summary">7.10 Summary</h2>
+<p>Investor Memory is one of the defining innovations of PDTA.</p>
+<p>Instead of treating each execution independently, PDTA preserves
+investment history as structured knowledge using PostgreSQL JSONB.</p>
+<p>This persistent memory enables historical comparison, behavioral
+analysis, reflection, explainability, and ultimately the construction of
+an Investor Digital Twin.</p>
+<p>Rather than storing data for archival purposes alone, Investor Memory
+stores experience.</p>
+<p>Experience is the foundation upon which the Investor Digital Twin is
+built.</p>

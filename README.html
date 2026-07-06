@@ -1,0 +1,274 @@
+<h1 id="portfolio-digital-twin-agent-pdta">Portfolio Digital Twin Agent
+(PDTA)</h1>
+<blockquote>
+<p><strong>A Memory-Centric AI Framework for Building an Investor
+Digital Twin</strong></p>
+</blockquote>
+<p>PDTA (Portfolio Digital Twin Agent) is an open-source research
+project that explores the next generation of AI-assisted investment
+systems.</p>
+<p>Unlike traditional portfolio optimization tools, PDTA does not simply
+search for the mathematically optimal portfolio.</p>
+<p>Instead, PDTA models an investor’s investment philosophy, risk
+tolerance, behavioral characteristics, and decision-making process to
+build an <strong>Investor Digital Twin</strong>.</p>
+<p>The long-term goal is to create an AI capable of answering:</p>
+<blockquote>
+<p><strong>“What would this investor do under today’s market
+conditions?”</strong></p>
+</blockquote>
+<p>rather than simply answering:</p>
+<blockquote>
+<p><strong>“What is the mathematically optimal portfolio?”</strong></p>
+</blockquote>
+<hr />
+<h1 id="vision">Vision</h1>
+<p>Traditional investment systems focus on:</p>
+<ul>
+<li>Market prediction</li>
+<li>Portfolio optimization</li>
+<li>Robo-advisors</li>
+<li>Risk management</li>
+</ul>
+<p>PDTA introduces a different perspective.</p>
+<p>Instead of optimizing portfolios alone, PDTA attempts to model the
+investor.</p>
+<p>The project combines</p>
+<ul>
+<li>Portfolio Optimization</li>
+<li>Investor Memory</li>
+<li>Difference Analysis</li>
+<li>Reflection</li>
+<li>Explainable AI</li>
+<li>Persona Learning</li>
+</ul>
+<p>to build an <strong>Investor Digital Twin</strong>.</p>
+<hr />
+<h1 id="current-features">Current Features</h1>
+<h2 id="portfolio-optimization">Portfolio Optimization</h2>
+<ul>
+<li>Monte Carlo Portfolio Optimization</li>
+<li>Efficient Frontier</li>
+<li>Expected Return</li>
+<li>Portfolio Risk</li>
+<li>Sharpe Ratio</li>
+<li>Maximum Drawdown</li>
+</ul>
+<hr />
+<h2 id="ai-agents">AI Agents</h2>
+<p>Current implementation includes:</p>
+<h3 id="marketagent">MarketAgent</h3>
+<ul>
+<li>Download market prices using Yahoo Finance</li>
+</ul>
+<h3 id="returnagent">ReturnAgent</h3>
+<ul>
+<li>Calculate daily returns</li>
+</ul>
+<h3 id="scenarioagent">ScenarioAgent</h3>
+<p>Generate market scenarios:</p>
+<ul>
+<li>Normal</li>
+<li>Bull Market</li>
+<li>Bear Market</li>
+<li>High Inflation</li>
+<li>JPY Weak</li>
+<li>JPY Strong</li>
+</ul>
+<h3 id="portfoliogeneratoragent">PortfolioGeneratorAgent</h3>
+<p>Generate random portfolios using Monte Carlo simulation.</p>
+<h3 id="optimizeragent">OptimizerAgent</h3>
+<p>Evaluate</p>
+<ul>
+<li>Expected Return</li>
+<li>Risk</li>
+<li>Sharpe Ratio</li>
+<li>Maximum Drawdown</li>
+</ul>
+<h3 id="currentportfolioagent">CurrentPortfolioAgent</h3>
+<p>Evaluate the current portfolio.</p>
+<h3 id="decisionagent">DecisionAgent</h3>
+<p>Generate investment recommendations.</p>
+<h3 id="policyagent">PolicyAgent</h3>
+<p>Apply investment policy constraints.</p>
+<h3 id="memoryagent">MemoryAgent</h3>
+<p>Manage Investor Memory stored in PostgreSQL.</p>
+<h3 id="differenceanalyzer">DifferenceAnalyzer</h3>
+<p>Compare historical investment decisions and identify changes.</p>
+<hr />
+<h1 id="investor-memory">Investor Memory</h1>
+<p>One of the core innovations of PDTA is <strong>Investor
+Memory</strong>.</p>
+<p>Every execution records</p>
+<ul>
+<li>Market conditions</li>
+<li>Portfolio status</li>
+<li>Optimization results</li>
+<li>Recommendations</li>
+<li>Investment policy</li>
+<li>Investor notes</li>
+</ul>
+<p>using PostgreSQL <strong>JSONB</strong>.</p>
+<p>This enables long-term analysis of investment behavior.</p>
+<hr />
+<h1 id="current-architecture">Current Architecture</h1>
+<pre><code>                Market Agent
+                     │
+                     ▼
+               Return Agent
+                     │
+                     ▼
+              Scenario Agent
+                     │
+                     ▼
+      Portfolio Generator Agent
+                     │
+                     ▼
+              Optimizer Agent
+                     │
+         ┌───────────┴───────────┐
+         ▼                       ▼
+ Current Portfolio         Decision Agent
+                                 │
+                                 ▼
+                          Policy Agent
+                                 │
+                                 ▼
+                         Investor Memory
+                                 │
+                                 ▼
+                        Difference Analyzer</code></pre>
+<hr />
+<h1 id="project-structure">Project Structure</h1>
+<pre><code>pdta-agent/
+
+├── agents/
+├── database/
+├── docs/
+│
+├── vision.md
+├── architecture.md
+├── investor_memory.md
+├── roadmap.md
+├── research.md
+├── agents.md
+│
+└── whitepaper/
+    ├── README.md
+    ├── 00_cover.md
+    ├── 01_executive_summary.md
+    ├── ...
+│
+├── optimizer/
+├── output/
+├── tests/
+│
+├── main.py
+├── requirements.txt
+└── README.md</code></pre>
+<hr />
+<h1 id="roadmap">Roadmap</h1>
+<h2 id="version-0.1">Version 0.1</h2>
+<ul>
+<li>Portfolio Optimization</li>
+<li>Monte Carlo Simulation</li>
+<li>Efficient Frontier</li>
+</ul>
+<hr />
+<h2 id="version-0.2">Version 0.2</h2>
+<ul>
+<li>PostgreSQL</li>
+<li>Investor Memory (JSONB)</li>
+</ul>
+<hr />
+<h2 id="version-0.3">Version 0.3</h2>
+<ul>
+<li>MemoryAgent</li>
+<li>DifferenceAnalyzer</li>
+</ul>
+<hr />
+<h2 id="version-0.4">Version 0.4</h2>
+<ul>
+<li>ReflectionAgent</li>
+</ul>
+<hr />
+<h2 id="version-0.5">Version 0.5</h2>
+<ul>
+<li>Explainable AI</li>
+<li>LLM Integration</li>
+</ul>
+<hr />
+<h2 id="version-0.6">Version 0.6</h2>
+<ul>
+<li>Persona Learning</li>
+</ul>
+<hr />
+<h2 id="version-1.0">Version 1.0</h2>
+<p><strong>Investor Digital Twin</strong></p>
+<hr />
+<h1 id="white-paper">White Paper</h1>
+<p>The design philosophy, system architecture, and long-term vision of
+PDTA are documented in the White Paper.</p>
+<p>See:</p>
+<pre><code>docs/whitepaper/</code></pre>
+<p>The White Paper evolves together with the source code.</p>
+<hr />
+<h1 id="future-vision">Future Vision</h1>
+<p>PDTA evolves beyond portfolio optimization.</p>
+<pre><code>Market Data
+
+↓
+
+Portfolio Optimization
+
+↓
+
+Recommendation
+
+↓
+
+Investor Memory
+
+↓
+
+Difference Analysis
+
+↓
+
+Reflection
+
+↓
+
+Persona Learning
+
+↓
+
+Investor Digital Twin</code></pre>
+<p>The objective is not only to recommend investments.</p>
+<p>The objective is to understand how an investor makes investment
+decisions.</p>
+<hr />
+<h1 id="technology">Technology</h1>
+<ul>
+<li>Python</li>
+<li>Pandas</li>
+<li>NumPy</li>
+<li>Matplotlib</li>
+<li>PostgreSQL</li>
+<li>JSONB</li>
+<li>yfinance</li>
+<li>Monte Carlo Simulation</li>
+<li>AI Agents</li>
+<li>Large Language Models (LLMs)</li>
+</ul>
+<hr />
+<h1 id="license">License</h1>
+<p>MIT License</p>
+<hr />
+<h1 id="author">Author</h1>
+<p><strong>Zenji Oka</strong></p>
+<p>Portfolio Digital Twin Agent (PDTA)</p>
+<blockquote>
+<p><strong>Building AI that understands investors, not just
+markets.</strong></p>
+</blockquote>

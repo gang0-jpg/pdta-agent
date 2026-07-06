@@ -1,0 +1,180 @@
+<h1 id="difference-analysis">08 Difference Analysis</h1>
+<h2 id="motivation">8.1 Motivation</h2>
+<p>Investor Memory preserves historical investment decisions.</p>
+<p>However, memory alone is insufficient.</p>
+<p>To support learning, an AI system must recognize <strong>how
+investment decisions change over time</strong>.</p>
+<p>This capability is provided by <strong>Difference
+Analysis</strong>.</p>
+<p>Rather than simply storing historical records, PDTA continuously
+compares successive Investor Memory snapshots to identify meaningful
+changes in investment behavior.</p>
+<p>Difference Analysis therefore represents the transition from
+<strong>memory</strong> to <strong>understanding</strong>.</p>
+<hr />
+<h2 id="why-difference-matters">8.2 Why Difference Matters</h2>
+<p>Investment decisions are rarely static.</p>
+<p>Even when market conditions remain relatively stable, recommended
+portfolio allocations may gradually change as:</p>
+<ul>
+<li>Market prices evolve</li>
+<li>Portfolio risk changes</li>
+<li>Expected returns change</li>
+<li>Investment policies are updated</li>
+</ul>
+<p>Observing these changes is often more informative than observing
+individual investment decisions.</p>
+<p>Difference Analysis focuses on identifying these changes.</p>
+<hr />
+<h2 id="comparison-strategy">8.3 Comparison Strategy</h2>
+<p>Each new Investor Memory record is compared with previous
+records.</p>
+<p>Current comparisons include:</p>
+<ul>
+<li>Portfolio allocation targets</li>
+<li>BUY / SELL / HOLD recommendations</li>
+<li>Policy adjustments</li>
+<li>Portfolio risk</li>
+<li>Expected return</li>
+<li>Sharpe Ratio</li>
+</ul>
+<p>Each comparison produces structured information describing how
+investment decisions evolved.</p>
+<hr />
+<h2 id="current-implementation">8.4 Current Implementation</h2>
+<p>The current DifferenceAnalyzer compares consecutive Investor Memory
+records.</p>
+<p>Typical outputs include:</p>
+<table>
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 25%" />
+<col style="width: 23%" />
+<col style="width: 17%" />
+<col style="width: 22%" />
+</colgroup>
+<thead>
+<tr>
+<th>Asset</th>
+<th style="text-align: right;">Previous Target</th>
+<th style="text-align: right;">Current Target</th>
+<th style="text-align: right;">Difference</th>
+<th>Action Changed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NASDAQ100</td>
+<td style="text-align: right;">10.3%</td>
+<td style="text-align: right;">13.9%</td>
+<td style="text-align: right;">+3.6%</td>
+<td>No</td>
+</tr>
+<tr>
+<td>TOPIX</td>
+<td style="text-align: right;">5.6%</td>
+<td style="text-align: right;">12.9%</td>
+<td style="text-align: right;">+7.3%</td>
+<td>No</td>
+</tr>
+<tr>
+<td>USDJPY</td>
+<td style="text-align: right;">34.1%</td>
+<td style="text-align: right;">42.2%</td>
+<td style="text-align: right;">+8.1%</td>
+<td>No</td>
+</tr>
+<tr>
+<td>GOLD</td>
+<td style="text-align: right;">21.5%</td>
+<td style="text-align: right;">21.3%</td>
+<td style="text-align: right;">-0.2%</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p>The current implementation therefore detects quantitative changes
+while preserving qualitative investment decisions.</p>
+<hr />
+<h2 id="stable-decisions">8.5 Stable Decisions</h2>
+<p>Not every change represents a behavioral change.</p>
+<p>For example,</p>
+<pre><code>BUY NASDAQ100
+
+↓
+
+BUY NASDAQ100</code></pre>
+<p>The recommendation remains unchanged even though the target
+allocation increases.</p>
+<p>Difference Analysis distinguishes between:</p>
+<ul>
+<li>Stable investment philosophy</li>
+<li>Quantitative portfolio adjustments</li>
+</ul>
+<p>This distinction is essential for future behavioral learning.</p>
+<hr />
+<h2 id="relationship-with-investor-memory">8.6 Relationship with
+Investor Memory</h2>
+<p>Investor Memory records historical facts.</p>
+<p>Difference Analysis extracts relationships between those facts.</p>
+<pre><code>Investor Memory
+
+↓
+
+Difference Analysis
+
+↓
+
+Behavioral Interpretation</code></pre>
+<p>Without Investor Memory, no comparison is possible.</p>
+<p>Without Difference Analysis, historical records remain isolated
+observations.</p>
+<p>Together they create structured investment knowledge.</p>
+<hr />
+<h2 id="toward-reflection">8.7 Toward Reflection</h2>
+<p>Difference Analysis prepares the input for future Reflection
+Agents.</p>
+<p>Reflection will answer questions such as:</p>
+<ul>
+<li>Why did recommendations change?</li>
+<li>Were previous recommendations successful?</li>
+<li>Which policy adjustments were effective?</li>
+<li>Which investment decisions should be reconsidered?</li>
+</ul>
+<p>Difference Analysis therefore acts as the bridge between historical
+memory and reflective reasoning.</p>
+<hr />
+<h2 id="future-extensions">8.8 Future Extensions</h2>
+<p>Future versions of Difference Analysis will include:</p>
+<ul>
+<li>Multi-period trend analysis</li>
+<li>Behavioral drift detection</li>
+<li>Investment philosophy stability</li>
+<li>Risk tolerance evolution</li>
+<li>Market regime comparison</li>
+<li>LLM-based interpretation</li>
+</ul>
+<p>Rather than comparing only two executions, future versions will
+analyze long-term behavioral patterns.</p>
+<hr />
+<h2 id="design-philosophy">8.9 Design Philosophy</h2>
+<p>Difference Analysis follows a simple principle.</p>
+<blockquote>
+<p><strong>Learning begins with recognizing change.</strong></p>
+</blockquote>
+<p>An AI system cannot improve if it cannot identify how its previous
+decisions differ from its current ones.</p>
+<p>Difference Analysis provides this capability.</p>
+<p>It transforms historical records into meaningful observations that
+support future learning.</p>
+<hr />
+<h2 id="summary">8.10 Summary</h2>
+<p>Difference Analysis is the second core innovation of PDTA.</p>
+<p>Investor Memory preserves experience.</p>
+<p>Difference Analysis interprets experience.</p>
+<p>Together they provide the foundation for Reflection, Explainable AI,
+Persona Learning, and ultimately the Investor Digital Twin.</p>
+<p>The purpose of Difference Analysis is not merely to calculate
+numerical differences.</p>
+<p>Its purpose is to understand how investment decisions evolve over
+time.</p>

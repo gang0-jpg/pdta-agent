@@ -1,0 +1,181 @@
+<h1 id="explainable-ai">10 Explainable AI</h1>
+<h2 id="motivation">10.1 Motivation</h2>
+<p>Modern AI systems are increasingly capable of generating
+sophisticated investment recommendations.</p>
+<p>However, numerical recommendations alone are insufficient.</p>
+<p>Investors must understand:</p>
+<ul>
+<li>Why a recommendation was generated.</li>
+<li>Which assumptions influenced the decision.</li>
+<li>Which market conditions were considered.</li>
+<li>Why today’s recommendation differs from previous ones.</li>
+</ul>
+<p>Without explanation, investors cannot fully trust AI-assisted
+investment systems.</p>
+<p>PDTA therefore considers explainability to be a fundamental
+requirement rather than an optional feature.</p>
+<hr />
+<h2 id="explainability-in-pdta">10.2 Explainability in PDTA</h2>
+<p>Explainable AI (XAI) in PDTA is designed to translate quantitative
+investment analysis into human-understandable reasoning.</p>
+<p>Rather than presenting only portfolio weights or optimization
+metrics, PDTA explains the reasoning process behind each
+recommendation.</p>
+<p>For example, instead of reporting:</p>
+<pre><code>BUY NASDAQ100</code></pre>
+<p>PDTA aims to explain:</p>
+<blockquote>
+<p>“NASDAQ100 allocation increased because expected returns improved
+while portfolio risk remained within the investor’s policy
+constraints.”</p>
+</blockquote>
+<p>This transformation allows investors to understand not only
+<strong>what</strong> was recommended, but also
+<strong>why</strong>.</p>
+<hr />
+<h2 id="relationship-with-reflection">10.3 Relationship with
+Reflection</h2>
+<p>Reflection and Explainable AI serve different purposes.</p>
+<pre><code>Reflection
+    AI understands itself
+
+↓
+
+Explainable AI
+    AI explains itself to humans</code></pre>
+<p>Reflection generates internal knowledge.</p>
+<p>Explainable AI communicates that knowledge to investors.</p>
+<p>Together they establish transparent human-AI collaboration.</p>
+<hr />
+<h2 id="sources-of-explanation">10.4 Sources of Explanation</h2>
+<p>PDTA generates explanations using multiple sources of
+information.</p>
+<p>These include:</p>
+<ul>
+<li>Current market conditions</li>
+<li>Portfolio optimization results</li>
+<li>Investor Memory</li>
+<li>Difference Analysis</li>
+<li>Investment policy</li>
+<li>Reflection results</li>
+</ul>
+<p>By integrating these components, explanations become both
+quantitative and contextual.</p>
+<hr />
+<h2 id="types-of-explanations">10.5 Types of Explanations</h2>
+<p>PDTA supports several categories of explanations.</p>
+<h3 id="recommendation-explanation">Recommendation Explanation</h3>
+<p>Explain why an investment recommendation was generated.</p>
+<p>Example:</p>
+<blockquote>
+<p>“TOPIX allocation decreased because expected risk increased relative
+to other assets.”</p>
+</blockquote>
+<hr />
+<h3 id="difference-explanation">Difference Explanation</h3>
+<p>Explain why today’s recommendation differs from previous
+executions.</p>
+<p>Example:</p>
+<blockquote>
+<p>“USDJPY allocation increased due to continued JPY depreciation and
+improved expected return.”</p>
+</blockquote>
+<hr />
+<h3 id="policy-explanation">Policy Explanation</h3>
+<p>Explain how investment policy affected recommendations.</p>
+<p>Example:</p>
+<blockquote>
+<p>“Although GOLD was recommended as BUY, the final action became HOLD
+because the maximum purchase limit was reached.”</p>
+</blockquote>
+<hr />
+<h3 id="historical-explanation">Historical Explanation</h3>
+<p>Explain recommendations using historical Investor Memory.</p>
+<p>Example:</p>
+<blockquote>
+<p>“A similar market environment occurred previously, where maintaining
+USD exposure reduced portfolio volatility.”</p>
+</blockquote>
+<hr />
+<h2 id="llm-assisted-explanation">10.6 LLM-Assisted Explanation</h2>
+<p>Future versions of PDTA will employ Large Language Models (LLMs) to
+generate personalized explanations.</p>
+<p>LLMs provide several advantages:</p>
+<ul>
+<li>Natural language generation</li>
+<li>Context awareness</li>
+<li>Interactive dialogue</li>
+<li>User-specific explanation style</li>
+</ul>
+<p>Rather than producing fixed templates, explanations become adaptive
+to the investor’s knowledge and preferences.</p>
+<hr />
+<h2 id="explainability-pipeline">10.7 Explainability Pipeline</h2>
+<p>The explainability process follows the architecture below.</p>
+<pre><code>Market Data
+
+↓
+
+Optimization
+
+↓
+
+Investor Memory
+
+↓
+
+Difference Analysis
+
+↓
+
+Reflection
+
+↓
+
+LLM
+
+↓
+
+Natural Language Explanation</code></pre>
+<p>Each stage contributes additional context before the final
+explanation is generated.</p>
+<hr />
+<h2 id="human-centered-ai">10.8 Human-Centered AI</h2>
+<p>PDTA is not designed to replace investor judgment.</p>
+<p>Instead, Explainable AI supports collaboration between human
+investors and AI agents.</p>
+<p>The objective is to enable investors to understand:</p>
+<ul>
+<li>the recommendation,</li>
+<li>the reasoning,</li>
+<li>the uncertainty,</li>
+<li>and the assumptions behind every decision.</li>
+</ul>
+<p>Explainability therefore strengthens trust rather than
+automation.</p>
+<hr />
+<h2 id="future-directions">10.9 Future Directions</h2>
+<p>Future Explainable AI research within PDTA includes:</p>
+<ul>
+<li>Interactive investment dialogue</li>
+<li>Counterfactual explanations</li>
+<li>Personalized explanation styles</li>
+<li>Multilingual explanation</li>
+<li>Voice-based investment assistants</li>
+<li>Explanation quality evaluation</li>
+</ul>
+<p>These capabilities will transform PDTA from a recommendation engine
+into an intelligent investment partner.</p>
+<hr />
+<h2 id="summary">10.10 Summary</h2>
+<p>Explainable AI is the communication layer of PDTA.</p>
+<p>Investor Memory preserves experience.</p>
+<p>Difference Analysis identifies change.</p>
+<p>Reflection creates knowledge.</p>
+<p>Explainable AI shares that knowledge with investors.</p>
+<p>Together these components establish transparent, trustworthy, and
+collaborative AI-assisted investment.</p>
+<p>The ultimate objective is not merely to generate better
+recommendations.</p>
+<p>It is to enable investors to understand, trust, and continuously
+improve their investment decisions alongside AI.</p>

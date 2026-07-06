@@ -1,154 +1,168 @@
 # Portfolio Digital Twin Agent (PDTA)
 
-> GPU-powered AI Agent for Portfolio Optimization and Market Digital Twin
+> **A Memory-Centric AI Framework for Building an Investor Digital Twin**
 
-PDTA (Portfolio Digital Twin Agent) is an AI framework that aims to realize an **Investor Digital Twin** for personalized investment decision support.
+PDTA (Portfolio Digital Twin Agent) is an open-source research project that explores the next generation of AI-assisted investment systems.
 
-Unlike traditional portfolio optimization tools, PDTA does not simply search for the portfolio with the highest return.
+Unlike traditional portfolio optimization tools, PDTA does not simply search for the mathematically optimal portfolio.
 
-Instead, it models an investor's investment philosophy, risk tolerance, and decision-making process, and searches for a robust portfolio that can withstand a wide range of future market scenarios.
+Instead, PDTA models an investor's investment philosophy, risk tolerance, behavioral characteristics, and decision-making process to build an **Investor Digital Twin**.
+
+The long-term goal is to create an AI capable of answering:
+
+> **"What would this investor do under today's market conditions?"**
+
+rather than simply answering:
+
+> **"What is the mathematically optimal portfolio?"**
 
 ---
 
 # Vision
 
-Traditional portfolio optimization seeks the highest expected return.
+Traditional investment systems focus on:
 
-PDTA goes one step further.
+- Market prediction
+- Portfolio optimization
+- Robo-advisors
+- Risk management
 
-Instead of finding the "best" portfolio, PDTA aims to build an **Investor Digital Twin** that understands an investor's goals, risk tolerance, investment philosophy, and decision-making process.
+PDTA introduces a different perspective.
 
-The objective is not simply to maximize returns, but to support robust, explainable, and personalized investment decisions under uncertain market conditions.
+Instead of optimizing portfolios alone, PDTA attempts to model the investor.
+
+The project combines
+
+- Portfolio Optimization
+- Investor Memory
+- Difference Analysis
+- Reflection
+- Explainable AI
+- Persona Learning
+
+to build an **Investor Digital Twin**.
 
 ---
 
-# Features
+# Current Features
+
+## Portfolio Optimization
+
+- Monte Carlo Portfolio Optimization
+- Efficient Frontier
+- Expected Return
+- Portfolio Risk
+- Sharpe Ratio
+- Maximum Drawdown
+
+---
+
+## AI Agents
 
 Current implementation includes:
 
-- MarketAgent
-  - Download market prices using Yahoo Finance
+### MarketAgent
 
-- ReturnAgent
-  - Calculate daily returns
+- Download market prices using Yahoo Finance
 
-- PortfolioGeneratorAgent
-  - Generate random portfolios (Monte Carlo)
+### ReturnAgent
 
-- OptimizerAgent
-  - Portfolio optimization
-  - Expected Return
-  - Risk (Volatility)
-  - Sharpe Ratio
-  - Maximum Drawdown
+- Calculate daily returns
 
-- CurrentPortfolioAgent
-  - Evaluate the user's current portfolio
+### ScenarioAgent
 
-- ScenarioAgent
-  - Market Scenario Simulation
-  - Normal
-  - Bull Market
-  - Bear Market
-  - High Inflation
-  - JPY Weak
-  - JPY Strong
+Generate market scenarios:
 
-- ReportAgent
-  - Efficient Frontier
-  - Scenario Summary Chart
+- Normal
+- Bull Market
+- Bear Market
+- High Inflation
+- JPY Weak
+- JPY Strong
+
+### PortfolioGeneratorAgent
+
+Generate random portfolios using Monte Carlo simulation.
+
+### OptimizerAgent
+
+Evaluate
+
+- Expected Return
+- Risk
+- Sharpe Ratio
+- Maximum Drawdown
+
+### CurrentPortfolioAgent
+
+Evaluate the current portfolio.
+
+### DecisionAgent
+
+Generate investment recommendations.
+
+### PolicyAgent
+
+Apply investment policy constraints.
+
+### MemoryAgent
+
+Manage Investor Memory stored in PostgreSQL.
+
+### DifferenceAnalyzer
+
+Compare historical investment decisions and identify changes.
+
+---
+
+# Investor Memory
+
+One of the core innovations of PDTA is **Investor Memory**.
+
+Every execution records
+
+- Market conditions
+- Portfolio status
+- Optimization results
+- Recommendations
+- Investment policy
+- Investor notes
+
+using PostgreSQL **JSONB**.
+
+This enables long-term analysis of investment behavior.
 
 ---
 
 # Current Architecture
 
 ```
-                +----------------+
-                | Market Agent   |
-                +----------------+
-                        |
-                        v
-                +----------------+
-                | Return Agent   |
-                +----------------+
-                        |
-                        v
-                +----------------+
-                | Scenario Agent |
-                +----------------+
-                        |
-                        v
-         +----------------------------+
-         | Portfolio Generator Agent  |
-         +----------------------------+
-                        |
-                        v
-                +----------------+
-                | OptimizerAgent |
-                +----------------+
-                        |
-        +---------------+----------------+
-        |                                |
-        v                                v
-+----------------------+      +----------------------+
-| Current Portfolio    |      | Report Agent         |
-+----------------------+      +----------------------+
-```
-
----
-
-# Example Output
-
-Current Portfolio
-
-```
-Sharpe Ratio
-
-Maximum Drawdown
-
-Expected Return
-
-Risk
-```
-
-Best Portfolio
-
-```
-Expected Return
-
-Risk
-
-Sharpe Ratio
-
-Maximum Drawdown
-```
-
-Scenario Analysis
-
-```
-Normal
-
-Bull
-
-Bear
-
-High Inflation
-
-JPY Weak
-
-JPY Strong
-```
-
-Efficient Frontier
-
-```
-output/frontier.png
-```
-
-Scenario Summary
-
-```
-output/scenario_summary.png
+                Market Agent
+                     │
+                     ▼
+               Return Agent
+                     │
+                     ▼
+              Scenario Agent
+                     │
+                     ▼
+      Portfolio Generator Agent
+                     │
+                     ▼
+              Optimizer Agent
+                     │
+         ┌───────────┴───────────┐
+         ▼                       ▼
+ Current Portfolio         Decision Agent
+                                 │
+                                 ▼
+                          Policy Agent
+                                 │
+                                 ▼
+                         Investor Memory
+                                 │
+                                 ▼
+                        Difference Analyzer
 ```
 
 ---
@@ -159,25 +173,26 @@ output/scenario_summary.png
 pdta-agent/
 
 ├── agents/
-│   ├── market_agent.py
-│   ├── return_agent.py
-│   ├── scenario_agent.py
-│   ├── portfolio_generator_agent.py
-│   ├── optimizer_agent.py
-│   ├── current_portfolio_agent.py
-│   └── report_agent.py
-│
-├── backends/
-│   ├── __init__.py
-│   └── numpy_backend.py
-│
-├── data/
+├── database/
 ├── docs/
+│
+├── vision.md
+├── architecture.md
+├── investor_memory.md
+├── roadmap.md
+├── research.md
+├── agents.md
+│
+└── whitepaper/
+    ├── README.md
+    ├── 00_cover.md
+    ├── 01_executive_summary.md
+    ├── ...
+│
 ├── optimizer/
 ├── output/
 ├── tests/
 │
-├── config.py
 ├── main.py
 ├── requirements.txt
 └── README.md
@@ -187,66 +202,106 @@ pdta-agent/
 
 # Roadmap
 
-## Version 0.x
+## Version 0.1
 
-- MarketAgent
 - Portfolio Optimization
 - Monte Carlo Simulation
 - Efficient Frontier
-- Scenario Simulation
-- Maximum Drawdown
-- CPU Backend
 
 ---
 
-## Version 1.x
+## Version 0.2
 
-- GPU Backend (CuPy)
-- io.net Integration
-- NVIDIA H100 Support
-- 1 Million Portfolios
-- 100 Market Scenarios
+- PostgreSQL
+- Investor Memory (JSONB)
 
 ---
 
-## Version 2.x
+## Version 0.3
 
-Investor Digital Twin
+- MemoryAgent
+- DifferenceAnalyzer
 
-- Personalized Investment Policy
-- Portfolio Rebalancing
-- Decision Agent
-- Portfolio Recommendation
-- Robust Score
-- AI Portfolio Manager
+---
+
+## Version 0.4
+
+- ReflectionAgent
+
+---
+
+## Version 0.5
+
+- Explainable AI
+- LLM Integration
+
+---
+
+## Version 0.6
+
+- Persona Learning
+
+---
+
+## Version 1.0
+
+**Investor Digital Twin**
+
+---
+
+# White Paper
+
+The design philosophy, system architecture, and long-term vision of PDTA are documented in the White Paper.
+
+See:
+
+```
+docs/whitepaper/
+```
+
+The White Paper evolves together with the source code.
 
 ---
 
 # Future Vision
 
-PDTA evolves toward an **Investor Digital Twin**.
+PDTA evolves beyond portfolio optimization.
 
-Rather than recommending the same portfolio to every investor, PDTA learns each investor's own:
+```
+Market Data
 
-- Investment philosophy
-- Risk tolerance
-- Return target
-- Rebalancing strategy
-- Decision-making style
+↓
 
-The ultimate goal is to create an AI agent that behaves like a personal fund manager.
+Portfolio Optimization
 
----
+↓
 
-# Philosophy
+Recommendation
 
-PDTA does not pursue a single "optimal" portfolio.
+↓
 
-Instead, it searches for the portfolio that best matches each investor's own investment philosophy, risk tolerance, and long-term objectives.
+Investor Memory
 
-Every investor is different.
+↓
 
-Therefore every Digital Twin should also be different.
+Difference Analysis
+
+↓
+
+Reflection
+
+↓
+
+Persona Learning
+
+↓
+
+Investor Digital Twin
+```
+
+The objective is not only to recommend investments.
+
+The objective is to understand how an investor makes investment decisions.
 
 ---
 
@@ -256,13 +311,12 @@ Therefore every Digital Twin should also be different.
 - Pandas
 - NumPy
 - Matplotlib
+- PostgreSQL
+- JSONB
 - yfinance
 - Monte Carlo Simulation
-- GPU Computing
-- io.net
-- NVIDIA H100
 - AI Agents
-- Digital Twin
+- Large Language Models (LLMs)
 
 ---
 
@@ -274,8 +328,8 @@ MIT License
 
 # Author
 
-Yoshiharu Oka
+**Zenji Oka**
 
 Portfolio Digital Twin Agent (PDTA)
 
-Toward an Investor Digital Twin
+> **Building AI that understands investors, not just markets.**
